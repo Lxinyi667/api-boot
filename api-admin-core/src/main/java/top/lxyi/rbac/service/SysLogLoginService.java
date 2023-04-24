@@ -9,7 +9,6 @@ import top.lxyi.rbac.vo.SysLogLoginVO;
 /**
  * 登录日志业务接口
  *
-
  **/
 @Service
 public interface SysLogLoginService extends BaseService<SysLogLoginEntity> {

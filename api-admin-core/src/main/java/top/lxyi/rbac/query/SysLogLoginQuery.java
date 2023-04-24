@@ -6,7 +6,9 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import top.lxyi.common.query.Query;
 
-
+/**
+ * 登录日志查询参数
+ */
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Schema(description = "登录日志查询参数")
