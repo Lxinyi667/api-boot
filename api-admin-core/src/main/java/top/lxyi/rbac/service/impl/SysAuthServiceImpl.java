@@ -26,15 +26,15 @@ import top.lxyi.security.utils.TokenUtils;
 public class SysAuthServiceImpl implements SysAuthService {
     private final TokenStoreCache tokenStoreCache;
     private final AuthenticationManager authenticationManager;
-//    private final SysCaptchaService sysCaptchaService;
+    private final SysCaptchaService sysCaptchaService;
 
     @Override
     public SysTokenVO loginByAccount(SysAccountLoginVO login) {
         // 验证码效验
-//        boolean flag = sysCaptchaService.validate(login.getKey(), login.getCaptcha());
-//        if (!flag) {
-//            throw new ServerException("验证码错误");
-//        }
+        boolean flag = sysCaptchaService.validate(login.getKey(), login.getCaptcha());
+        if (!flag) {
+            throw new ServerException("验证码错误");
+        }
 
         Authentication authentication;
         try {
