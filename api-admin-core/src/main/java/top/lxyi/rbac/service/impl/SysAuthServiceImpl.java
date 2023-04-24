@@ -17,7 +17,7 @@ import top.lxyi.security.utils.TokenUtils;
 
 
 /**
- * 权限认证服务
+ * 权限认证服务实现类
  *
  * @author mqxu
  */
@@ -26,7 +26,7 @@ import top.lxyi.security.utils.TokenUtils;
 public class SysAuthServiceImpl implements SysAuthService {
     private final TokenStoreCache tokenStoreCache;
     private final AuthenticationManager authenticationManager;
-    private final SysCaptchaService sysCaptchaService;
+//    private final SysCaptchaService sysCaptchaService;
 
     @Override
     public SysTokenVO loginByAccount(SysAccountLoginVO login) {
@@ -51,7 +51,7 @@ public class SysAuthServiceImpl implements SysAuthService {
         // 生成 accessToken
         String accessToken = TokenUtils.generator();
 
-        // 保存用户信息到缓存
+        // 保存用户信息到缓存,accessToken默认过期时间为24小时
         tokenStoreCache.saveUser(accessToken, user);
 
         return new SysTokenVO(accessToken);

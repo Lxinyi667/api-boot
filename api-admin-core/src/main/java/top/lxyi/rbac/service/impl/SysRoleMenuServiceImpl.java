@@ -11,7 +11,7 @@ import java.util.Set;
 
 
 /**
- * 角色与菜单对应服务
+ * 角色与菜单对应业务实现类
  *
  * @author mqxu
  */

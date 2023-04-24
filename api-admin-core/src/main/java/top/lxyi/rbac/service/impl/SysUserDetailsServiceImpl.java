@@ -3,11 +3,15 @@ package top.lxyi.rbac.service.impl;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
+import top.lxyi.rbac.convert.SysUserConvert;
 import top.lxyi.rbac.entity.SysUserEntity;
 import top.lxyi.rbac.enums.UserStatusEnum;
 import top.lxyi.rbac.service.SysMenuService;
 import top.lxyi.rbac.service.SysUserDetailsService;
 import top.lxyi.security.user.UserDetail;
+
+import java.util.HashSet;
+import java.util.Set;
 
 
 /**
@@ -18,7 +22,7 @@ import top.lxyi.security.user.UserDetail;
 @Service
 @AllArgsConstructor
 public class SysUserDetailsServiceImpl implements SysUserDetailsService {
-    private final SysMenuService menuService;
+//    private final SysMenuService menuService;
 
     @Override
     public UserDetails getUserDetails(SysUserEntity userEntity) {
@@ -29,8 +33,11 @@ public class SysUserDetailsServiceImpl implements SysUserDetailsService {
         if (userEntity.getStatus() == UserStatusEnum.DISABLE.getValue()) {
             userDetail.setEnabled(false);
         }
-        ;
-        userDetail.setAuthoritySet(menuService.getAuthority(userDetail));
+
+//        userDetail.setAuthoritySet(menuService.getAuthority(userDetail));
+        // 用户权限列表
+        Set<String> authoritySet = new HashSet<>();
+        userDetail.setAuthoritySet(authoritySet);
 
         return userDetail;
     }

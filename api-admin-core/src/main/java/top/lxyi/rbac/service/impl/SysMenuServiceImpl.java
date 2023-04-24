@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import top.lxyi.common.constant.Constant;
 import top.lxyi.common.utils.TreeUtils;
 import top.lxyi.mybatis.service.impl.BaseServiceImpl;
+import top.lxyi.rbac.convert.SysMenuConvert;
 import top.lxyi.rbac.dao.SysMenuDao;
 import top.lxyi.rbac.entity.SysMenuEntity;
 import top.lxyi.rbac.enums.SuperAdminEnum;
