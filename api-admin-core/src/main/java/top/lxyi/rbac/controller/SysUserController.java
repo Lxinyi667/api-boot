@@ -31,9 +31,22 @@ import top.lxyi.security.user.UserDetail;
 @Tag(name = "用户管理")
 public class SysUserController {
     private final SysMenuService sysMenuService;
+    //补充
     private final SysUserService sysUserService;
     private final PasswordEncoder passwordEncoder;
 
+    @PostMapping("password")
+    @Operation(summary = "修改密码")
+    public Result<String> password(@RequestBody @Valid SysUserPasswordVO vo) {
+        // 原密码不正确
+        UserDetail user = SecurityUser.getUser();
+        if (!passwordEncoder.matches(vo.getOldPassword(), user.getPassword())) {
+            return Result.error("原密码不正确");
+        }
+        // 修改密码
+        sysUserService.updatePassword(user.getId(), passwordEncoder.encode(vo.getNewPassword()));
+        return Result.ok();
+    }
     @PostMapping("info")
     @Operation(summary = "获取登录用户信息")
 //    public Result<SysUserVO> info() {
@@ -54,17 +67,6 @@ public class SysUserController {
     }
 
 
-    @PostMapping("password")
-    @Operation(summary = "修改密码")
-    public Result<String> password(@RequestBody @Valid SysUserPasswordVO vo) {
-        // 原密码不正确
-        UserDetail user = SecurityUser.getUser();
-        if (!passwordEncoder.matches(vo.getOldPassword(), user.getPassword())) {
-            return Result.error("原密码不正确");
-        }
-        // 修改密码
-        sysUserService.updatePassword(user.getId(), passwordEncoder.encode(vo.getNewPassword()));
-        return Result.ok();
-    }
+
 
 }
