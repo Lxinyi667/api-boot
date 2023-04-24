@@ -22,7 +22,7 @@ import java.util.Set;
 @Service
 @AllArgsConstructor
 public class SysUserDetailsServiceImpl implements SysUserDetailsService {
-//    private final SysMenuService menuService;
+    private final SysMenuService menuService;
 
     @Override
     public UserDetails getUserDetails(SysUserEntity userEntity) {
@@ -36,7 +36,7 @@ public class SysUserDetailsServiceImpl implements SysUserDetailsService {
 
 //        userDetail.setAuthoritySet(menuService.getAuthority(userDetail));
         // 用户权限列表
-        Set<String> authoritySet = new HashSet<>();
+        Set<String> authoritySet = SysMenuService.getUserAuthority(userDetail);
         userDetail.setAuthoritySet(authoritySet);
 
         return userDetail;

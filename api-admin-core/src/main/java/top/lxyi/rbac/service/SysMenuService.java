@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * 菜单管理
+ * 系统菜单业务接口
  *
  * @author mqxu
  */
@@ -33,7 +33,15 @@ public interface SysMenuService extends BaseService<SysMenuEntity> {
      */
     List<SysMenuVO> getUserMenuList(UserDetail user, Integer type);
 
-    Set<String> getAuthority(UserDetail userDetail);
+    /**
+     * 获取用户权限列表
+     */
+    static Set<String> getUserAuthority(UserDetail user) {
+        return null;
+    }
+
+
+//    Set<String> getAuthority(UserDetail userDetail);
 
 
 }
